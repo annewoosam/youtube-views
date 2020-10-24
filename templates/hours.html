@@ -18,8 +18,7 @@
 
   <!-- CSS only -->
 
-  <link rel="stylesheet" type="text/css" HREF="../css/styles.css">a
-a
+  <link rel="stylesheet" type="text/css" HREF="../css/styles.css">
 </head>
 
 <body>
@@ -41,7 +40,7 @@ a
 
     </thead>
 
-      <td>Total Subscribers</td><td><canvas id="YourChartNameWithoutSpacesHere" width="400" height="150"></canvas></td>
+      <td>Hours Watched Trend</td><td><canvas id="hourswatched" width="400" height="150"></canvas></td>
 
      </td>
 
@@ -53,23 +52,23 @@ a
         // bar chart data
 
             var barData = {
-                labels : [ "April","May","June","July","August","September" ],
+                labels : [ "April","May","June","July","August","September","October" ],
                 datasets : [
                     {
                         fillColor : "#48A497",
                         strokeColor : "#48A4D1",
-                        data : {{ YourColumnNameHere }}
+                        data : {{ hours_watched }}
                     }
                 ]
             }
 
             // get bar chart canvas
 
-            var YourChartNameWithoutSpacesHere = document.getElementById("YourChartNameWithoutSpacesHere").getContext("2d");
+            var hourswatched = document.getElementById("hourswatched").getContext("2d");
 
             // draw bar chart
 
-            new Chart(YourChartNameWithoutSpacesHere).Bar(barData);
+            new Chart(hourswatched).Bar(barData);
 
 
        </script>

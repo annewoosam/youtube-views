@@ -1,27 +1,29 @@
 """CRUD operations."""
 
-from model import db, YourClassNameHereInTitleCaseSingular, connect_to_db
+from model import db, Hour, connect_to_db
 
 import datetime
 
 
-def create_YourClassNameHereInLowerCaseSingular(YourColumnNamesHereSeparatedByCommasExcludingPrimaryKeyColumn):
+def create_hour(channel_name, month_end_at, hours_watched, notes, last_updated):
    
 
-    YourClassNameHereInLowerCaseSingular = YourClassNameHereInTitleCaseSingular(YourColumnName=YourColumnName,
-                  YourNextColumnNameUntilLast=YourNextColumnNameUntilLast,
-                  YourLastColumnName=YourLastColumnName)
+    hour = Hour(channel_name=channel_name,
+                month_end_at=month_end_at,
+                hours_watched=hours_watched,
+                notes=notes,
+                last_updated=last_updated)
 
-    db.session.add(YourClassNameHereInLowerCaseSingular)
+    db.session.add(hour)
 
     db.session.commit()
 
-    return YourClassNameHereInLowerCaseSingular
+    return hour
 
-def get_creators():
-    """Return all rows of YourClassNameHereInLowerCaseSingular monthly data."""
+def get_hours():
+    """Return all rows of hour data."""
 
-    return YourClassNameHereInTitleCaseSingular.query.all()
+    return Hour.query.all()
  
 if __name__ == '__main__':
     from server import app

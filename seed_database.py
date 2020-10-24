@@ -13,32 +13,35 @@ import model
 import server
 
 
-os.system('dropdb YourFolderUnderscoredAsDatabaseNameHere')
+os.system('dropdb youtube_hours')
 
-os.system('createdb YourFolderUnderscoredAsDatabaseNameHere')
+os.system('createdb youtube_hours')
 
 model.connect_to_db(server.app)
 
 model.db.create_all()
 
 
-# Create YourModelNameLowerCasedHere table's initial data.
+# Create hour table's initial data.
 
-with open('data/YourModelNameLowerCasedSingularHere.json') as f:
+with open('data/hour.json') as f:
 
-    YourModelNameLowerCasedSingularHere_data = json.loads(f.read())
+    hour_data = json.loads(f.read())
 
-YourModelNameLowerCasedSingularHere_in_db = []
+hour_in_db = []
 
-for YourModelNameLowerCasedSingularHere in YourModelNameLowerCasedSingularHere_data:
-    columnNamesSeparatedbyCommasUntilLastOne= (
-                                   YourModelNameLowerCasedSingularHere['YourFirstColumnNameHere'],
-                                   YourModelNameLowerCasedSingularHere['YourNextColumnNameHereTillLast'],
-                                   YourModelNameLowerCasedSingularHere['YourLastColumnNameHere'])
+for hour in hour_data:
+    channel_name, month_end_at, hours_watched, notes, last_updated= (
+                                   hour['channel_name'],
+                                   hour['month_end_at'],
+                                   hour['hours_watched'],
+                                   hour['notes'],
+                                   hour['last_updated'])
+    db_hour = crud.create_hour(
+                                 channel_name,
+                                 month_end_at,
+                                 hours_watched,
+                                 notes,
+                                 last_updated)
 
-    db_YourModelNameLowerCasedSingularHere = crud.create_YourModelNameLowerCasedSingularHere(
-                                 YourFirstColumnNameHere,
-                                 YourNextColumnNameHereTillLast,
-                                 YourLastColumnNameHere)
-
-    YourModelNameLowerCasedSingularHere_in_db.append(db_YourModelNameLowerCasedSingularHere)
+    hour_in_db.append(db_hour)

@@ -1,12 +1,51 @@
 [
-	{
-		"key based on model py skipping the primary key":"value that is a string or a date",
-		"key":value that is a number,
-		"created_on":"2020-08-07"
+		{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-04-30",
+		"hours_watched":20.1,
+		"notes":"Channel began 4/08/2020",
+		"last_updated":"2020-10-24"
 	},
-    {
-        "key based on model py skipping the primary key":"value that is a string or a date",
-		"key":value that is a number,
-		"key":"value"
+		{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-05-31",
+		"hours_watched":21.1,
+		"notes":"none",
+		"last_updated":"2020-10-24"
+	},
+		{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-06-30",
+		"hours_watched":19.1,
+		"notes":"Break 6/25-8/25",
+		"last_updated":"2020-10-24"
+	},
+		{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-07-31",
+		"hours_watched":23.9,
+		"notes":"Break 6/25-8/25",
+		"last_updated":"2020-10-24"
+	},
+		{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-08-31",
+		"hours_watched":42.6,
+		"notes":"Break 6/25-8/25",
+		"last_updated":"2020-10-24"
+	},
+	{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-09-30",
+		"hours_watched":69,
+		"notes":"none",
+		"last_updated":"2020-10-24"
+	},
+	{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-10-31",
+		"hours_watched":65.2,
+		"notes":"Circa 10/24. One more week to go",
+		"last_updated":"2020-10-24"
 	}
 ]

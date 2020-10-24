@@ -1,4 +1,4 @@
-"""Server for youtube_YourModelNameLowerCaseSingularStats app."""
+"""Server for youtube_hours app."""
 
 # increased flask
 
@@ -10,7 +10,7 @@ db = SQLAlchemy()
 
 # created import allowing connection to database
 
-from model import connect_to_db, YourModelNameTitleCaseSingularStats, db
+from model import connect_to_db, Hour, db
 
 app = Flask(__name__)
 
@@ -25,21 +25,21 @@ import crud
 
 @app.route('/')
 
-def all_YourModelNameLowerCasePluralStats():
+def all_hours():
 
-    stats=crud.get_YourModelNameLowerCasePlural()
+    stats=crud.get_hours()
     
-    YourVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourVariableName).all()]
+    channel_name=[q[0] for q in db.session.query(Hour.channel_name).all()]
 
-    YourNextVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourNextVariableName).all()]
+    month_end_at=[q[0] for q in db.session.query(Hour.month_end_at).all()]
      
-    #repeat till next to last variable accounted for
-      
-    YourLastVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourLastVariableName).all()]
-    
-    # repeat through all columns needed
+    hours_watched=[q[0] for q in db.session.query(Hour.hours_watched).all()]
 
-    return render_template('YourModelNameLowerCasePlural.html', YourVariable_Name=YourVariable_Name, YourNextVariableName=YourNextVariableName, YourLastVariableName=YourLastVariableName)
+    notes=[q[0] for q in db.session.query(Hour.notes).all()]
+      
+    last_updated=[q[0] for q in db.session.query(Hour.last_updated).all()]
+    
+    return render_template('hours.html', channel_name=channel_name, month_end_at=month_end_at, hours_watched=hours_watched, notes=notes, last_updated=last_updated)
 
 if __name__ == '__main__':
 
