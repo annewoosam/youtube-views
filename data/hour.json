@@ -44,8 +44,22 @@
 	{
 		"channel_name":"WinningCheckers",
 		"month_end_at":"2020-10-31",
-		"hours_watched":65.2,
-		"notes":"Circa 10/24. One more week to go",
-		"last_updated":"2020-10-24"
+		"hours_watched":90.3,
+		"notes":"none",
+		"last_updated":"2020-11-07"
+	},
+	{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-11-30",
+		"hours_watched":199.7,
+		"notes":"none",
+		"last_updated":"2020-11-07"
+	},
+	{
+		"channel_name":"WinningCheckers",
+		"month_end_at":"2020-12-31",
+		"hours_watched":189.3,
+		"notes":"none",
+		"last_updated":"2020-12-15"
 	}
 ]
