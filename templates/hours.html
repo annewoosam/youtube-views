@@ -14,7 +14,20 @@
 
   <!-- Load our stylesheet -->
 
-  <style></style>
+<style>
+table, th, td {
+  border: 1px white;
+  border-collapse: collapse;
+}
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
+text {
+  position: top;
+  text-align:center
+}
+</style>
 
   <!-- CSS only -->
 
@@ -26,9 +39,9 @@
 <!-- Code. -->
 
 
-  <div><h1>Let's Analyze!</h1></div>
+  <div><text><h1>YouTube Hours Watched Trend - 2020 - Year 1 </h1></text></div>
   
-  <table>
+<table class="center">
 
     <thead>
 
@@ -40,19 +53,26 @@
 
     </thead>
 
-      <td>Hours Watched Trend</td><td><canvas id="hourswatched" width="700" height="300"></canvas></td>
-
+      <td></td><td><canvas id="hourswatched" width="700" height="500"></canvas></td>
+      <td></td><td><canvas id="hourswatchedquarterly" width="700" height="500"></canvas></td>
+      <td></td><td><canvas id="hourswatchedannual" width="700" height="500"></canvas></td>
      </td>
 
 
   </table>
-
+<!--   first month with data: {{ from_month }}
+  last month with data: {{ to_month }}  
+  months with data: {{ months }} 
+  // helps retrieve month list to copy and paste into labels. Charts disappear when passed in. -->
   <script>
- 
+       
+       
+        
+       
         // bar chart data
 
             var barData = {
-                labels : [ "April","May","June","July","August","September","October","November","December" ],
+                labels : ['April ', 'May ', 'June ', 'July ', 'August ', 'September', 'October ', 'November ', 'December '],
                 datasets : [
                     {
                         fillColor : "#48A497",
@@ -68,11 +88,141 @@
 
             // draw bar chart
 
-            new Chart(hourswatched).Bar(barData);
+            var myBar = new Chart(hourswatched).Bar(barData, {
+                showTooltips: false,
+                onAnimationComplete: function () {
 
+                    var hourswatched = this.chart.hourswatched;
+                    hourswatched.font = this.scale.font;
+                    hourswatched.fillStyle = this.scale.textColor
+                    hourswatched.textAlign = "center";
+                    hourswatched.textBaseline = "bottom";
+
+                    this.datasets.forEach(function (dataset) {
+                        dataset.bars.forEach(function (bar) {
+                            hourswatched.fillText(bar.value, bar.x, bar.y - 5);
+                        });
+                    })
+                }
+            });
+
+       // bar chart data
+
+            var barDataQ = {
+                labels : [ "Q1","Q2","Q3","Q4" ],
+                datasets : [
+                    {
+                        fillColor : "#48A497",
+                        strokeColor : "#48A4D1",
+                        data : [ 0, {{ quarter2 }}, {{ quarter3 }}, {{ quarter4 }} ]
+                    }
+                ]
+            }
+
+            // get bar chart canvas
+
+            var hourswatchedquarterly = document.getElementById("hourswatchedquarterly").getContext("2d");
+
+            // draw bar chart
+
+            var myBar = new Chart(hourswatchedquarterly).Bar(barDataQ, {
+                showTooltips: false,
+                onAnimationComplete: function () {
+
+                    var hourswatchedquarterly = this.chart.hourswatchedquarterly;
+                    hourswatchedquarterly.font = this.scale.font;
+                    hourswatchedquarterly.fillStyle = this.scale.textColor
+                    hourswatchedquarterly.textAlign = "center";
+                    hourswatchedquarterly.textBaseline = "bottom";
+
+                    this.datasets.forEach(function (dataset) {
+                        dataset.bars.forEach(function (bar) {
+                            hourswatchedquarterly.fillText(bar.value, bar.x, bar.y - 5);
+                        });
+                    })
+                }
+            });
+       // bar chart data
+
+            var barDataA = {
+                labels : [ "YTD" ],
+                datasets : [
+                    {
+                        fillColor : "#48A497",
+                        strokeColor : "#48A4D1",
+                        data : [{{ hours_watched|sum() }}]
+                    }
+                ]
+            }
+
+            // get bar chart canvas
+
+            var hourswatchedannual = document.getElementById("hourswatchedannual").getContext("2d");
+
+            // draw bar chart
+
+            var myBar = new Chart(hourswatchedannual).Bar(barDataA, {
+                showTooltips: false,
+                onAnimationComplete: function () {
+
+                    var hourswatchedannual = this.chart.hourswatchedannual;
+                    hourswatchedannual.font = this.scale.font;
+                    hourswatchedannual.fillStyle = this.scale.textColor
+                    hourswatchedannual.textAlign = "center";
+                    hourswatchedannual.textBaseline = "bottom";
+
+                    this.datasets.forEach(function (dataset) {
+                        dataset.bars.forEach(function (bar) {
+                            hourswatchedannual.fillText(bar.value, bar.x, bar.y - 5);
+                        });
+                    })
+                }
+            });
 
        </script>
 
+
+
+<table class="center">
+
+  <tr>
+  <td> <h1>Quick Facts</h1> </td>
+  </tr>
+
+  <tr>
+  <td> Months active: {{ month_end_at }} </td>
+  </tr>
+   <tr> 
+  <td> Monthly Goal (reached and exceeded December 2020): 333.33 hours </td>
+ </tr>
+  <tr>
+    <td> Monthly Count: {{ hours_watched }} </td>
+  </tr>
+    <tr> 
+  <td> Quarterly Goal: 1000 hours </td>
+ </tr>
+     <tr> 
+        <tr>
+    <td> Quarter 1: {{ quarter1 }} </td>
+  </tr>
+  <tr>
+    <td> Quarter 2: {{ quarter2 }} </td>
+  </tr>
+  <tr>
+    <td> Quarter 3: {{ quarter3 }} </td>
+  </tr>
+  <td> Quarter 4: {{ quarter4 }} </td></tr>
+  <tr>
+    <td> Annual hours watched: {{ hours_watched|sum() }} </td>
+  </tr>
+  <tr>
+    <td> 12 Consecutive Months Goal: 4000 hours </td>
+  </tr>
+
+</table>
+
+<!-- https://bugsdb.com/_en/debug/bcfd5a2be7b65020e534e29101bf2987, http://jinja.pocoo.org/docs/dev/templates/#sum, key is that our list does not contain a dictionary so we need to modify to not use an attribute. -->
+<!-- a JSFiddle example with bars on chart http://jsfiddle.net/yobwf43d/-->
 
 <!-- JS-based components. -->
 
