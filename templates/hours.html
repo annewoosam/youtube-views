@@ -40,6 +40,8 @@ text {
 
 
   <div><text><h1>YouTube Hours Watched Trend - 2020 - Year 1 </h1></text></div>
+   <div><text><h1>Quick Facts - {{ month_end_at }} Months of Activity</h1></text></div>
+   <div><text><h1>Last Updated {{ one_month_ago.strftime('%m-%d-%Y') }}</h1></text></div>
   
 <table class="center">
 
@@ -183,42 +185,63 @@ text {
 
 
 
+
 <table class="center">
 
-  <tr>
-  <td> <h1>Quick Facts</h1> </td>
+<tr>
+  <td> <b>Monthly Goal (reached and exceeded December 2020):</b> </td><td> 333.33 hours </td>
+  <td> <b>Monthly Count:</b></td><td> {{ hours_watched }} </td>
+</tr>
+<tr>
+  <td><b>Quarterly Goal:</b></td>  <td> 1000 hours </td>
+  <td><b>Quarter 1:</b> </td><td>{{ quarter1 }} </td>
+  <td></td><td></td><td><b>Quarter 2:</b> </td><td>{{ quarter2 }} </td>
+  <td></td><td></td><td><b>Quarter 3:</b> </td><td>{{ quarter3 }} </td>
+  <td></td><td></td><td><b>Quarter 4:</b> </td><td>{{ quarter4 }} </td>
+</tr>
+<tr>
+  <td><b>Annual hours watched:</b> </th> <td> {{ hours_watched|sum() }} </td>
+  <td><b>12 Consecutive Months Goal:</b> </td> <td> 4000 hours </td>
   </tr>
-
-  <tr>
-  <td> Months active: {{ month_end_at }} </td>
-  </tr>
-   <tr> 
-  <td> Monthly Goal (reached and exceeded December 2020): 333.33 hours </td>
- </tr>
-  <tr>
-    <td> Monthly Count: {{ hours_watched }} </td>
-  </tr>
-    <tr> 
-  <td> Quarterly Goal: 1000 hours </td>
- </tr>
-     <tr> 
-        <tr>
-    <td> Quarter 1: {{ quarter1 }} </td>
-  </tr>
-  <tr>
-    <td> Quarter 2: {{ quarter2 }} </td>
-  </tr>
-  <tr>
-    <td> Quarter 3: {{ quarter3 }} </td>
-  </tr>
-  <td> Quarter 4: {{ quarter4 }} </td></tr>
-  <tr>
-    <td> Annual hours watched: {{ hours_watched|sum() }} </td>
-  </tr>
-  <tr>
-    <td> 12 Consecutive Months Goal: 4000 hours </td>
-  </tr>
-
+<tr>
+   <td><b>Last 1 Month is after:</b> </th> <td> {{ one_month_ago.strftime('%m-%d-%Y') }}</td>
+   <td><b>1 Month total:</b> </th> <td> {{ last_month }} </td>
+   <td><b>1 Month goal:</b> </th> <td> 333.33</td>
+   <td><b>1 Month variance:</b> </th> <td> {{ variance1 }}</td>
+</tr>
+<tr>
+   <td><b>Last 3 Months is after:</b> </th> <td> {{ three_months_ago.strftime('%m-%d-%Y') }}</td>
+   <td><b>3 Months total:</b> </th> <td> {{ three_months }} </td>
+   <td><b>3 Month goal:</b> </th> <td> 1000</td>
+   <td><b>3 Month variance:</b> </th> <td> {{ variance3 }}</td>
+<tr>
+   <td><b>Last 6 Months is after:</b> </th> <td> {{ six_months_ago.strftime('%m-%d-%Y') }}</td>
+   <td><b>6 Months total:</b> </th> <td> {{ six_months }} </td>
+   <td><b>6 Month goal:</b> </th> <td> 2000</td>
+   <td><b>6 Month variance:</b> </th> <td> {{ variance6 }}</td>
+</tr>
+<tr>
+   <td><b>Last 9 Months is after:</b> </th> <td> {{ nine_months_ago.strftime('%m-%d-%Y') }}</td>
+   <td><b>9 Months total:</b> </th> <td> {{ nine_months }} </td>
+   <td><b>9 Month goal:</b> </th> <td> 3000</td>
+   <td><b>9 Month variance:</b> </th> <td> {{ variance9 }}</td>
+</tr>
+<tr>
+   <td><b>Last 12 Months is after:</b> </th> <td> {{ twelve_months_ago.strftime('%m-%d-%Y') }}</td>
+   <td><b>12 Months total:</b> </th> <td> {{ twelve_months }} </td>
+   <td><b>12 Month goal:</b> </th> <td> 4000</td>
+   <td><b>12 Months variance:</b> </th> <td> {{ variance12 }}</td>
+   <!-- <td><b>12 Months variance:</b> </th> <td>  </td> -->
+</tr>
+<tr>
+   <td><b>Prior Months is after:</b> </th> <td> {{ eleven_months_ago.strftime('%m-%d-%Y') }}</td>
+   <td><b>Prior Months total:</b> </th> <td> {{ eleven_months }} </td>
+   <td><b>Last month, prior month, growth ratio, next month's projection, 11 months sum to use, new anticipated 12-month total:</b> </th> <td> {{ variance1g }} | {{ variance11 }} | {{ growthrate }} | {{next_month_projected}} | {{ month11p }} | {{next_month_projected_total}} </td>
+   <!-- <td><b>12 Months variance:</b> </th> <td>  </td> -->
+</tr>
+ <tr>
+   <td><b>Refreshed (UTC):</b> </th> <td> {{ current_time.strftime('%m-%d-%Y') }} </td><td>Variances from goal should shrink over the first year-and-a-half approximately.</td>
+</tr>
 </table>
 
 <!-- https://bugsdb.com/_en/debug/bcfd5a2be7b65020e534e29101bf2987, http://jinja.pocoo.org/docs/dev/templates/#sum, key is that our list does not contain a dictionary so we need to modify to not use an attribute. -->
