@@ -140,9 +140,9 @@ def all_views():
 
     growthrate=variance1g/variance11
 
-    next_month_projected=variance1g*growthrate
+    next_month_projected=round(variance1g*growthrate)
 
-    next_month_projected_total=next_month_projected+month11p
+    next_month_projected_total=round(next_month_projected+month11p)
 
     return render_template('views.html', month11p=month11p, result1=result1, result3=result3, result6=result6, result9=result9, result11=result11, result12=result12, variance1=variance1, variance3=variance3, variance6=variance6, variance9=variance9, variance12=variance12, variance1g=variance1g, variance11=variance11, growthrate=growthrate, channel_name=channel_name, current_time=current_time, last_month=last_month, one_month_ago=one_month_ago, three_months=three_months, three_months_ago=three_months_ago, six_months=six_months, six_months_ago=six_months_ago, nine_months=nine_months, nine_months_ago=nine_months_ago, eleven_months=eleven_months, eleven_months_ago=eleven_months_ago, twelve_months=twelve_months, twelve_months_ago=twelve_months_ago, next_month_projected=next_month_projected, next_month_projected_total=next_month_projected_total,from_month=from_month, to_month=to_month, months=months, month_end_at=month_end_at, quarter1=quarter1, quarter2=quarter2, quarter3=quarter3, quarter4=quarter4, views=views, total_views_watched=total_views_watched, notes=notes, last_updated=last_updated)
 
